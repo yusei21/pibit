@@ -1,0 +1,68 @@
+{
+  "contract": "docs/design-contract.md (v3, linguagem visual de integratedbio.com): portal do GEA; tarefa principal é entender a pesquisa e chegar ao contato; viewports 390x844 e 1440x900.",
+  "targetViewports": [
+    "1440x900",
+    "390x844"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "axe-core (wcag2a/2aa/21aa/22aa) em 7 rotas a 1440x900: 0 violações (o card petróleo foi corrigido para white/90). 1º Tab = skip link; anel de foco visível na nav em pílula (1440x900-focus.png). Menu móvel: Esc fecha e devolve o foco. Alvos de toque com no mínimo 44px."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Capturas de página inteira das 7 rotas em 1440x900 e 390x844, sem overflow horizontal em nenhuma. O diagrama de processo vira grade 2x2 no celular e o laço de feedback some abaixo de md."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "pass",
+      "evidence": "Suspense com esqueleto e 'Carregando…' (role=status) nas rotas lazy; o mapa mostra 'Carregando mapa…' até o onLoad do iframe e o link do Google Maps fica sempre visível."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "/pesquisa?projeto=software mostra 'Publicações desta pesquisa em atualização.' com link para contato (verificado via Playwright)."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "Rota inexistente mostra o 404 com dois caminhos de volta (1440x900-nao-existe.png). Foto bloqueada (brunoFoto.jpeg abortada) vira as iniciais 'BA' e mantém o rótulo acessível (1440x900-erro-imagem.png)."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "Publicação sem URL confirmada aparece com o selo 'link em verificação' em /pesquisa?projeto=emergentes (verificado via Playwright)."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "Todas as rotas renderizam por completo, sem erros de console nem pageerror nos dois viewports."
+    },
+    "permission": {
+      "status": "not-applicable",
+      "reason": "Site público estático, sem autenticação nem área restrita."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x900",
+      "artifact": "1440x900-home-fold.png",
+      "observation": "Hero em moldura com foto de coleta tratada em sálvia, título grande em Geist, nav em pílula com Contato escuro, CTA escuro + quadrado limão."
+    },
+    {
+      "viewport": "1440x900",
+      "artifact": "1440x900-home.png",
+      "observation": "Diagrama 01–04 com laço de feedback, seção do grupo com foto da equipe, linhas de pesquisa em grade, cards de publicação em três tons e rodapé com a marca GEA gigante."
+    },
+    {
+      "viewport": "1440x900",
+      "artifact": "cro.png",
+      "observation": "Cromatograma completo até 10 min com os 6 picos alinhados aos rótulos (corrigido o corte em cerca de 80% causado por pathLength + non-scaling-stroke)."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "390x844-home.png",
+      "observation": "Coluna única; títulos grandes quebram sem estourar a largura; cards empilhados; marca do rodapé dentro da largura."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "390x844-menu.png",
+      "observation": "Menu móvel em painel branco com itens mono de 48px e o item ativo em limão."
+    }
+  ]
+}

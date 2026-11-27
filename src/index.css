@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/*
+  Linguagem visual inspirada em integratedbio.com: papel off-white, grotesca grande
+  com tracking negativo, rótulos em mono maiúscula, verde-sálvia e um acento limão.
+*/
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --color-paper: #f7f7f5;
+  --color-ink: #222f30;
+  --color-ink-soft: #55615f;
+
+  --color-lime: #d4f5a0;
+  --color-lime-deep: #b9e66f;
+
+  /* verde-sálvia (escala usada em todo o site) */
+  --color-forest-50: #eef2ef;
+  --color-forest-100: #dfe8e2;
+  --color-forest-200: #c3d3c9;
+  --color-forest-400: #87a596;
+  --color-forest-500: #5f8574;
+  --color-forest-600: #426a59;
+  --color-forest-700: #335546;
+  --color-forest-800: #27433a;
+  --color-forest-900: #1d302b;
+
+  /* cards em tons de petróleo, como nos cards de publicação da referência */
+  --color-slate-card: #4b625d;
+
+  --color-ocean-50: #ebf3f5;
+  --color-ocean-500: #2b7f9e;
+  --color-ocean-600: #1f6580;
+
+  --color-sand: #ededea;
+  --color-sand-200: #e1e1dc;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  @media (pointer: fine) {
+    html { overscroll-behavior: none; }
+  }
+  body {
+    @apply bg-paper font-sans text-ink;
+    letter-spacing: -0.006em;
+    touch-action: manipulation;
+  }
+  h1, h2, h3 { text-wrap: balance; }
+  p, li, dd, figcaption { text-wrap: pretty; }
+  [id] { scroll-margin-top: 6rem; }
+
+  :focus-visible {
+    outline: 2px solid #1f6580; /* ocean-600, valor fixo: variáveis de tema não usadas não são emitidas */
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  img.photo {
+    outline: 1px solid rgb(0 0 0 / 0.08);
+    outline-offset: -1px;
+  }
+
+  ::selection { background: var(--color-lime); color: var(--color-ink); }
+}
+
+@layer utilities {
+  .tracking-display { letter-spacing: -0.03em; }
+  .tracking-heading { letter-spacing: -0.02em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
